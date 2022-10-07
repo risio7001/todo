@@ -1,19 +1,29 @@
 import React from "react";
+import { Form } from "react-bootstrap";
 
 interface CardProps {
+    no:number;
     name: string;
     title: string;
     check:boolean;
     
 }
 
-const Card = ({ name, title, check }: CardProps) => {
+const Card = ({ no, name, title, check }: CardProps) => {
+
+
+    
+    const onChangeHandler = () => {
+        
+    }
+
     return <>
-        <div>
-            name:{name}
-            title:{title}
-            check : {check}
-        </div>
+        <tr>
+            <td>{no+1}</td>
+            <td>{name}</td>
+            <td>{title}</td>
+            <td><Form.Check type='checkbox' checked={check} onChange={()=>check=!check}></Form.Check></td>
+        </tr>
     </>
 }
 
