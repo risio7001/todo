@@ -11,8 +11,6 @@ interface CardProps {
 
 const Card = ({ no, name, title, check }: CardProps) => {
 
-
-    
     const onChangeHandler = () => {
         
     }

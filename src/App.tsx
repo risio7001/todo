@@ -6,10 +6,14 @@ import Card from './component/Card';
 import { dummy } from './data/dummy';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.css'
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
+import ModalCustom from './utils/ModalCustom';
+// import Modal from './utils/ModalCustom';
+// import ModalCustom from './utils/ModalCustom';
 
 function App() {
   const [data, setData] = useState(dummy);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(()=>{ // 확인용
     console.log(data);
@@ -23,6 +27,15 @@ function App() {
     setData(data.filter((el)=>el.name!==name));
     
   };
+  
+  const onInsert = () => {
+    console.log('e');
+  }
+
+  const openModal = useCallback(()=>{
+    setShowModal(!showModal);
+  },[showModal]);
+
 
   return (
     <div className="App">
@@ -49,6 +62,11 @@ function App() {
           ))}  
         </tbody>
       </Table>
+      <Button variant='primary' onClick={()=>openModal()}>add+</Button>
+        
+      {showModal?<ModalCustom openModal={() => openModal()} >{showModal}</ModalCustom>:null}
+      
+      
     </div>
   );
 }
