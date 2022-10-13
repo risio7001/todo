@@ -1,41 +1,37 @@
 import React, { Children, FC, ReactNode, useState } from 'react'
-import { Modal,Form, Row, Col, Button } from 'react-bootstrap'
-interface modalProps{
+import { Modal, Form, Row, Col, Button } from 'react-bootstrap'
+interface ModalProps {
     // showModal:boolean;
-    openModal:()=>void;
-    // onInsert:()=>void;
-    children:boolean;
+    // data:[];
+    // openModal: () => void;
+    onInsert: (pp: string) => void;
+    children: [];
 }
-const ModalCustom = ({ openModal,children}:modalProps) =>{
+const ModalCustom: React.FC<ModalProps> = ({ onInsert }) => {
 
-    const [title, setTitle]=useState<string>();
-    const [content, setContent]=useState<string>();
+    const [title, setTitle] = useState<string>();
+    const [content, setContent] = useState<string>();
 
-    const onChange = (e:string) =>{
+    const onChange = (e: string) => {
         setTitle(e);
     }
 
-    return<>
-        <Modal
-        show={children}
-            onHide={() => openModal()}
-            size='lg'>
-            <Modal.Body>
-                <Form>
-                    <Row className='mb-3'>
-                        <Col>
-                            <Form.Control onChange={(e)=>onChange(e.target.value)} placeholder='제목'></Form.Control>
-                        </Col>
-                        <Col>
-                            <Form.Control placeholder='내용'></Form.Control>
-                        </Col>
-                    </Row>
-                </Form>
-                <Row>
-                    <Button variant='primary' >Add</Button>
+    return <>
+        <Modal.Body>
+            <Form>
+                <Row className='mb-3'>
+                    <Col>
+                        <Form.Control onChange={(e) => onChange(e.target.value)} placeholder='제목'></Form.Control>
+                    </Col>
+                    <Col>
+                        <Form.Control placeholder='내용'></Form.Control>
+                    </Col>
                 </Row>
-            </Modal.Body>
-        </Modal>
+            </Form>
+            <Row>
+                <Button variant='primary' onClick={() => onInsert("Asdf")} >Add</Button>
+            </Row>
+        </Modal.Body>
     </>
 }
 export default ModalCustom;
