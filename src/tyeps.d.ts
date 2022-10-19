@@ -5,6 +5,7 @@ type Todo = {
 }
 
 type CheckHandle = (CheckHandle:Todo)=>void
+type AddTodo = (AddTodo:Todo) => void
 
 type Toggle = {
     toggle:string

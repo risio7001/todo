@@ -13,7 +13,6 @@ const Counter: React.FC<Props> = ({children}) =>{
 
     return<>
         <div>
-            asdf
             {children(count, setCount)}
         </div>
     </>

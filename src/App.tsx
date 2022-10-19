@@ -3,19 +3,19 @@ import './App.css';
 import { dummy } from './data/dummy';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.css'
-import { Button, Card, Form, Modal } from 'react-bootstrap';
+import { Button, Modal, ModalTitle } from 'react-bootstrap';
 import Counter from './component/Counter';
-import { TodoItem } from './component/TodoItem';
 import { TodoList } from './component/TodoList';
 import { Header } from './component/Header';
+import ModalCustom from './utils/ModalCustom';
 // import Modal from './utils/ModalCustom';
 // import ModalCustom from './utils/ModalCustom';
-
 
 function App() {
   const [data, setData] = useState(dummy);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectToggle, setSelectToggle] = useState("TodoList");
+  
   // const openModal = useCallback(() => {
   //   setShowModal(!showModal);
   // }, [showModal]);
@@ -34,6 +34,11 @@ function App() {
       return el;
     });
     setData(tt);
+  }
+
+  const addTodo = (add:Todo) => {
+    setData([...data, add]);
+    setShowModal(false);
   }
 
   return (
@@ -59,7 +64,10 @@ function App() {
               </>
             </tbody>
           </Table>
-          <Button variant='primary' >add+</Button>
+          <Button variant='primary' onClick={()=>setShowModal(!showModal)}>add+</Button>
+          <Modal show={showModal} onHide={()=>setShowModal(false)}>
+            <ModalCustom onInsert={addTodo} children={[]}/>
+          </Modal>
         </div>
         :
         <Counter>
@@ -69,7 +77,6 @@ function App() {
               <Button onClick={() => setCount(count + 1)}>+</Button>
             </div>
           )}
-
         </Counter>
       }
     </div>
