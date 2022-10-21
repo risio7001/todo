@@ -11,9 +11,6 @@ import { Todo } from './todo/Todo';
 function App() {
   const [selectToggle, setSelectToggle] = useState("TodoList");
   
-  // const openModal = useCallback(() => {
-  //   setShowModal(!showModal);
-  // }, [showModal]);
   const toggleChange = (toggle: Toggle) => {
     setSelectToggle(toggle.toggle);
   }
@@ -33,6 +30,7 @@ function App() {
               <div>
                 {count}
                 <Button onClick={() => setCount(count + 1)}>+</Button>
+                <Button onClick={() => setCount(count - 1)}>-</Button>
               </div>
             )}
           </Counter>
