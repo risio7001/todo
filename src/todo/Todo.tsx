@@ -29,12 +29,6 @@ export const Todo: React.FC = () => {
     setData(data.filter((el)=>el!=select));
   }
 
-//   const modifyTodo = (modify:Todo) => {
-    // const tt = data.map((el)=>{
-
-    // })
-//   }
-
   const addTodo = (add:Todo) => {
     setData([...data, add]);
     setShowModal(false);
@@ -58,6 +52,7 @@ export const Todo: React.FC = () => {
           return el;
       });
       setData(tt);
+      setShowModal(false);
   }
 
     return <>
@@ -85,7 +80,9 @@ export const Todo: React.FC = () => {
         }}>add+</Button>
         <Modal show={showModal} onHide={() => setShowModal(false)}>
             <ModalTitle style={{ textAlign: 'center' }}>{typeT}</ModalTitle>
-            <ModalCustom onInsert={addTodo} children={[]} type={typeT} no={data[data.length - 1].no + 1} todo={modify_select} onModify={onModify}
+            <ModalCustom children={[]} type={typeT} no={data[data.length - 1].no + 1} todo={modify_select} 
+            onInsert={addTodo}
+            onModify={onModify}
             />
         </Modal>
 
